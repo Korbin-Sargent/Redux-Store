@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+//Apollo dependencies
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,6 +9,10 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+// import store file
+import store from './utils/store'
+
+//import pages
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import NoMatch from './pages/NoMatch';
@@ -18,12 +23,17 @@ import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
 
+// create main GraphQL API endpoint
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+//create request middleware
 const authLink = setContext((_, { headers }) => {
+  //get the token from local storage
   const token = localStorage.getItem('id_token');
+  //return the headers to the context
   return {
     headers: {
       ...headers,
@@ -31,6 +41,8 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
+
+//create Apollo client
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
