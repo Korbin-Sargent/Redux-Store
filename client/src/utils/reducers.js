@@ -19,10 +19,10 @@ const initialState = {
   currentCategory: '',
 }
 
-// TODO: To get a better understand of how a reducer works - add comments to the various actions in the reducer
+//Set the intial state of the reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    
+
     case UPDATE_PRODUCTS:
       return {
         ...state,
