@@ -11,6 +11,7 @@ import {
   TOGGLE_CART,
 } from './actions';
 
+//Set the intial state of the reducer
 const initialState = {
   products: [],
   cart: [],
@@ -18,8 +19,6 @@ const initialState = {
   categories: [],
   currentCategory: '',
 }
-
-//Set the intial state of the reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
